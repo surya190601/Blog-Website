@@ -78,7 +78,6 @@ const HeadContainer = styled.div`
   padding: 24px 120px;
   align-items: center;
   border-bottom: 1px solid #ededed;
-  width: 84%;
   position: sticky;
   top: 0;
 `;

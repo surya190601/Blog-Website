@@ -77,23 +77,21 @@ const HeadContainer = styled.div`
   background-color: #ffffff;
   padding: 24px 120px;
   align-items: center;
-  border-bottom: 1px solid #EDEDED;
+  border-bottom: 1px solid #ededed;
   width: 84%;
+  position: sticky;
+  top: 0;
 `;
 
 const Main = styled.div`
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(
-    180deg,
-    rgba(66, 174, 228, 0.1),
-    rgba(66, 174, 228, 0)
-  );
+  background: #ffffff;
 `;
 const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   background: #ffffff;
-  border-top: 1px solid #EDEDED;
+  border-top: 1px solid #ededed;
 `;

@@ -6,7 +6,7 @@ import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
-
+import Footer from "./Footer";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -48,6 +48,9 @@ const Theme = ({ state }) => {
           <PageError when={data.isError} />
         </Switch>
       </Main>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
     </>
   );
 };
@@ -57,7 +60,7 @@ export default connect(Theme);
 const globalStyles = css`
   body {
     margin: 0;
-    font-family: 'DM Sans';
+    font-family: "DM Sans";
     font-style: normal;
   }
   a,
@@ -72,7 +75,10 @@ const HeadContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   background-color: #ffffff;
-  padding: 24px 120px 24px 120px;
+  padding: 24px 120px;
+  align-items: center;
+  border-bottom: 1px solid #EDEDED;
+  width: 84%;
 `;
 
 const Main = styled.div`
@@ -83,4 +89,11 @@ const Main = styled.div`
     rgba(66, 174, 228, 0.1),
     rgba(66, 174, 228, 0)
   );
+`;
+const FooterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: #ffffff;
+  border-top: 1px solid #EDEDED;
 `;

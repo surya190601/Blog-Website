@@ -7,6 +7,7 @@ import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
 import Footer from "./Footer";
+import Banner from "./Banner";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -40,6 +41,7 @@ const Theme = ({ state }) => {
       </HeadContainer>
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
+      <Banner/>
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
@@ -80,6 +82,7 @@ const HeadContainer = styled.div`
   border-bottom: 1px solid #ededed;
   position: sticky;
   top: 0;
+  z-index:2;
 `;
 
 const Main = styled.div`

@@ -26,7 +26,7 @@ function MobileMenu({ state, actions }) {
 
       <MenuToggle>
         <HamburgerIcon
-          color="white"
+          color="red"
           size="24px"
           role="button"
           tabindex="0"
@@ -56,7 +56,7 @@ function MobileMenu({ state, actions }) {
             <CloseIcon color="white" size="20px" />
           </>
         ) : (
-          <HamburgerIcon color="white" size="24px" />
+          <HamburgerIcon color="red" size="24px" />
         )}
       </MenuToggle>
       {/* If the menu is open, render the menu modal */}

@@ -7,7 +7,7 @@ import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
 import Footer from "./Footer";
-import Banner from "./Banner";
+import HomePage from "./HomePage";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -22,7 +22,7 @@ const Theme = ({ state }) => {
   const data = state.source.get(state.router.link);
   return (
     <>
-      {/* Add some metatags to the <head> of the HTML. */}
+      {/* Add some Metatags to the <head> of the HTML. */}
       <Title />
       <Head>
         <meta name="description" content={state.frontity.description} />
@@ -41,10 +41,10 @@ const Theme = ({ state }) => {
       </HeadContainer>
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
-      <Banner/>
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
+          <HomePage when={data.isHome} state = {state}/>
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
@@ -86,8 +86,6 @@ const HeadContainer = styled.div`
 `;
 
 const Main = styled.div`
-  display: flex;
-  justify-content: center;
   background: #ffffff;
 `;
 const FooterContainer = styled.div`

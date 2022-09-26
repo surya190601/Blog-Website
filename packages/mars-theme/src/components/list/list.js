@@ -5,7 +5,6 @@ import Pagination from "./pagination";
 const List = ({ state }) => {
   // Get the data of the current list.
   const data = state.source.get(state.router.link);
-  console.log(state.source.get(state.router.link));
   return (
     <Container>
       {/* If the list is a taxonomy, we render a title. */}
@@ -37,9 +36,8 @@ const List = ({ state }) => {
 export default connect(List);
 
 const Container = styled.section`
-  width: 800px;
+  width: 320px;
   margin: 0;
-  padding: 24px;
   list-style: none;
 `;
 

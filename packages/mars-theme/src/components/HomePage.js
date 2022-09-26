@@ -1,17 +1,23 @@
 import React from "react";
 import Banner from "./Banner";
-import Post from "./post";
-import { connect, styled } from "frontity";
-import { useEffect } from "react";
+import {  connect,styled } from "frontity";
+import List from "./list";
+import Card from "./Card/Card";
 
-const HomePage = ({ state}) => {
-    console.log(state);
+const HomePage = ({ state }) => {
   return (
     <>
       <Banner />
-      {/* <Post/> */}
+      <MainContainer>
+        <List />
+        <Card/>
+      </MainContainer>
     </>
   );
 };
 
-export default HomePage;
+export default connect(HomePage);
+const MainContainer = styled.div`
+  padding: 35px 120px 120px;
+  
+`;

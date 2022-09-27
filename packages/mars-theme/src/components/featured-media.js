@@ -29,7 +29,6 @@ const FeaturedMedia = ({ state, id }) => {
       ) || null;
 
   return (
-    <Container isAmp={state.frontity.mode === "amp"}>
       <StyledImage
         alt={media.title.rendered}
         src={media.source_url}
@@ -37,7 +36,6 @@ const FeaturedMedia = ({ state, id }) => {
         width={media?.media_details?.width}
         height={media?.media_details?.height}
       />
-    </Container>
   );
 };
 

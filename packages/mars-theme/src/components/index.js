@@ -8,6 +8,7 @@ import Title from "./title";
 import PageError from "./page-error";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
+import Card from "./Card/Card";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -44,8 +45,8 @@ const Theme = ({ state }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
-          <HomePage when={data.isHome} state = {state}/>
-          <List when={data.isArchive} />
+          <HomePage when={data.isHome}/>
+          <HomePage when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>
@@ -82,7 +83,7 @@ const HeadContainer = styled.div`
   border-bottom: 1px solid #ededed;
   position: sticky;
   top: 0;
-  z-index:2;
+  z-index: 2;
 `;
 
 const Main = styled.div`

@@ -27,6 +27,7 @@ const CardItems = ({ state, item }) => {
         <Link link={item.link}>
           <ImageContainer>
             <FeaturedMedia id={item.featured_media} />
+            <Frame />
           </ImageContainer>
         </Link>
         <PostDetailsContainer>
@@ -58,8 +59,21 @@ const CardItems = ({ state, item }) => {
 export default connect(CardItems);
 
 const ImageContainer = styled.div`
+  position: relative;
   width: 320px;
   height: 180px;
+`;
+const Frame = styled.div`
+  position: absolute;
+  top: 0;
+  height: 9px;
+  width: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+  background: #e72b2c;
+  ${ImageContainer}:hover & {
+    opacity: 1;
+  }
 `;
 const PostDetailsContainer = styled.div`
   padding: 12px 31px 24px 19px;

@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
-import List from "./list";
 import FeaturedMedia from "./featured-media";
 
 /**
@@ -36,15 +34,6 @@ const Post = ({ state, actions, libraries }) => {
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
-  /**
-   * Once the post has loaded in the DOM, prefetch both the
-   * home posts and the list component so if the user visits
-   * the home page, everything is ready and it loads instantly.
-   */
-  useEffect(() => {
-    actions.source.fetch("/");
-    List.preload();
-  }, [actions.source]);
 
   // Load the post, but only if the data is ready.
   return data.isReady ? (

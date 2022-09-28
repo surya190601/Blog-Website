@@ -28,12 +28,21 @@ const Card = ({ state }) => {
           Author: <b>{decode(state.source.author[data.id].name)}</b>
         </Header>
       )}
+      {!data.isAuthor && !data.isTaxonomy && (
+        <Header>
+          <b>Latest</b>
+        </Header>
+      )}
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
           gap: "40px 50px",
+          borderTop: "1px solid #CECECE",
+          marginTop:"20px",
+          paddingTop:"40px",
+          width: "690px",
         }}
       >
         {item.map(({ type, id }) => {
@@ -48,6 +57,7 @@ const Card = ({ state }) => {
 
 export default connect(Card);
 const Header = styled.h3`
+  margin: 0px;
   font-weight: 400;
   font-size: 32px;
   line-height: 42px;

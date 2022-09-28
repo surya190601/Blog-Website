@@ -1,6 +1,10 @@
 import { connect, styled } from "frontity";
 import Link from "./link";
 import FeaturedMedia from "./featured-media";
+import { ChevronSmallLeft } from "@styled-icons/entypo";
+import { Share } from "@styled-icons/entypo";
+import Recommendation from "./Recommendation/Recommendation";
+import Image from "@frontity/components/image";
 
 /**
  * The Post component that Mars uses to render any kind of "post type", like
@@ -33,49 +37,57 @@ const Post = ({ state, actions, libraries }) => {
 
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
-
-
+  const dataFormatConverter = (date) => {
+    date = date.toDateString();
+    date = date.substring(4, 10) + "," + date.substring(11, 15);
+    return date;
+  };
   // Load the post, but only if the data is ready.
+  console.log(post?.description);
   return data.isReady ? (
     <Container>
-      <div>
-        <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-
-        {/* Hide author and date on pages */}
-        {!data.isPage && (
-          <div>
-            {author && (
-              <StyledLink link={author.link}>
-                <Author>
-                  By <b>{author.name}</b>
-                </Author>
-              </StyledLink>
-            )}
-            <DateWrapper>
-              {" "}
-              on <b>{date.toDateString()}</b>
-            </DateWrapper>
+      <StyledLink link="/">
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <StyledBackHomeIcon />
+          <StyledBackHomeText>Back to Home</StyledBackHomeText>
+        </div>
+      </StyledLink>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <ContentContainer>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <PostAuthorAvatar src={author.avatar_urls[96]} alt="Avatar" />
+            <PostAuthorName>{author.name}</PostAuthorName>
           </div>
-        )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              marginTop: "4px",
+              justifyContent: "space-between",
+            }}
+          >
+            <PostDate>
+              {"Last updated on " + dataFormatConverter(date)}
+            </PostDate>
+            <div>
+              <StyledShareIcon />
+            </div>
+          </div>
+          <Title>{post?.title?.rendered}</Title>
+          {post?.description?.rendered ? (
+            <PostDescription>{post.description.rendered}</PostDescription>
+          ) : null}
+          <ImageContainer>
+            <FeaturedMedia id={post.featured_media} />
+          </ImageContainer>
+          <Content>
+            <Html2React html={post.content.rendered} />
+          </Content>
+        </ContentContainer>
+        <SideBarContainer>
+          <Recommendation />
+        </SideBarContainer>
       </div>
-
-      {/* Look at the settings to see if we should include the featured image */}
-      {state.theme.featured.showOnPost && (
-        <FeaturedMedia id={post.featured_media} />
-      )}
-
-      {data.isAttachment ? (
-        // If the post is an attachment, just render the description property,
-        // which already contains the thumbnail.
-        <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
-      ) : (
-        // Render the content using the Html2React component so the HTML is
-        // processed by the processors we included in the
-        // libraries.html2react.processors array.
-        <Content>
-          <Html2React html={post.content.rendered} />
-        </Content>
-      )}
     </Container>
   ) : null;
 };
@@ -83,40 +95,85 @@ const Post = ({ state, actions, libraries }) => {
 export default connect(Post);
 
 const Container = styled.div`
-  width: 800px;
-  margin: 0;
-  padding: 24px;
+  padding: 50px 120px 120px 110px;
 `;
-
-const Title = styled.h1`
-  margin: 0;
-  margin-top: 24px;
-  margin-bottom: 8px;
-  color: rgba(12, 17, 43);
-`;
-
 const StyledLink = styled(Link)`
-  padding: 15px 0;
+  text-decoration: none;
 `;
-
-const Author = styled.p`
-  color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
-  display: inline;
+const StyledBackHomeIcon = styled(ChevronSmallLeft)`
+  height: 32px;
+  width: 32px;
+  color: #d9d9d9;
 `;
-
-const DateWrapper = styled.p`
-  color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
-  display: inline;
+const StyledBackHomeText = styled.div`
+  margin-top: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  color: #d9d9d9;
 `;
+const ContentContainer = styled.div`
+  padding-left: 10px;
+  width: 714px;
+`;
+const SideBarContainer = styled.div`
+  margin-left: 80px;
+  width: 28%;
+`;
+const PostAuthorName = styled.div`
+  margin-top: 21px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+  margin-left: 10px;
+`;
+const PostAuthorAvatar = styled(Image)`
+  margin-top: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+`;
+const PostDate = styled.div`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+`;
+const StyledShareIcon = styled(Share)`
+  display: flex;
+  justify-content: flex-end;
+  height: 16px;
+  width: 16px;
+  :hover {
+    color: red;
+  }
+`;
+const Title = styled.h1`
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 55px;
+  color: #000000;
+  margin: 18px 0px 12px;
+`;
+const PostDescription = styled.div`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  text-align: center;
 
+  color: #b0b0b0;
+`;
+const ImageContainer = styled.div`
+  width: 714px;
+  height: 402px;
+`;
 /**
  * This component is the parent of the `content.rendered` HTML. We can use nested
  * selectors to style that HTML.
  */
 const Content = styled.div`
-  color: rgba(12, 17, 43, 0.8);
+  margin-top: 50px;
   word-break: break-word;
 
   * {
@@ -124,7 +181,10 @@ const Content = styled.div`
   }
 
   p {
-    line-height: 1.6em;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #000000;
   }
 
   img {

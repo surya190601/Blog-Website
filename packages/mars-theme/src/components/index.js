@@ -1,14 +1,12 @@
 import { Global, css, connect, styled, Head } from "frontity";
 import Switch from "@frontity/components/switch";
 import Header from "./header";
-import List from "./list";
 import Post from "./Post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
-import Card from "./Card/Card";
 
 /**
  * Theme is the root React component of our theme. The one we will export

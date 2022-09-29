@@ -37,7 +37,6 @@ const Card = ({ state }) => {
           borderTop: "1px solid #CECECE",
           marginTop:"20px",
           paddingTop:"40px",
-          width: "690px",
         }}
       >
         {item.map(({ type, id }) => {

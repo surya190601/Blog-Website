@@ -5,7 +5,6 @@ import Card from "./Card/Card";
 import Recommendation from "./Recommendation/Recommendation";
 
 const HomePage = ({ state }) => {
-    
   return (
     <>
       <Banner />
@@ -15,7 +14,7 @@ const HomePage = ({ state }) => {
         </ContentContainer>
         <SideBarContainer>
           <div>
-            <Recommendation/>
+            <Recommendation />
           </div>
         </SideBarContainer>
       </MainContainer>
@@ -30,8 +29,9 @@ const MainContainer = styled.div`
   flex-direction: row;
 `;
 const ContentContainer = styled.div`
-  width: 72%;
+  width: 56.1%;
 `;
 const SideBarContainer = styled.div`
-  width: 28%;
+  margin-left: 7%;
+  width: 35%;
 `;

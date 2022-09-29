@@ -8,7 +8,6 @@ const Comments = ({ actions, state, postId }) => {
   useEffect(() => {
     actions.source.fetch(`@comments/${postId}`);
   }, [data]);
-
   // console.log(postId);
 
   return (

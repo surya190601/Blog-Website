@@ -4,11 +4,6 @@ import CardItems from "./CardItems";
 const Card = ({ state }) => {
   const data = state.source.get(state.router.link);
   const item = state.source.get(state.router.link).items;
-  console.log(state.source);
-  item.sort(function (a, b) {
-    return a.id - b.id;
-  });
-  console.log(item);
   const taxonomyCapitalized = (taxonomy) => {
     return taxonomy.charAt(0).toUpperCase() + taxonomy.slice(1);
   };

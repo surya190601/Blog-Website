@@ -2,12 +2,12 @@ import React from "react";
 import { connect, styled } from "frontity";
 import Image from "@frontity/components/image";
 const CommentTemplate = (props) => {
-  const { id, children, state, libraries,Html2React } = props;
+  const { id, children, state, libraries, Html2React ,line = true} = props;
   const author = state.source.comment[id];
   //   console.log(author);
   const content = state.source.comment[id].content.rendered;
   const date = new Date(state.source.comment[id].date);
-  
+
   const dataFormatConverter = (date) => {
     date = date.toDateString();
     date = date.substring(4, 10) + "," + date.substring(11, 15);
@@ -15,7 +15,7 @@ const CommentTemplate = (props) => {
   };
   return (
     <>
-      <div style={{ borderBottom: "1px solid #CECECE", paddingBottom: "20px" }}>
+      <div style={{}}>
         <div
           style={{
             display: "flex",
@@ -42,12 +42,14 @@ const CommentTemplate = (props) => {
                     children={children}
                     state={state}
                     Html2React={Html2React}
+                    line = {false}
                   />
                 </ChildCommentContainer>
               </>
             );
           })}
       </div>
+      {line && <hr />}
     </>
   );
 };

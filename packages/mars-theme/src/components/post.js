@@ -5,6 +5,7 @@ import { ChevronSmallLeft } from "@styled-icons/entypo";
 import { Share } from "@styled-icons/entypo";
 import Recommendation from "./Recommendation/Recommendation";
 import Image from "@frontity/components/image";
+import Comments from "./Comments";
 
 /**
  * The Post component that Mars uses to render any kind of "post type", like
@@ -83,6 +84,7 @@ const Post = ({ state, actions, libraries }) => {
           <Content>
             <Html2React html={post.content.rendered} />
           </Content>
+          <Comments postId={post.id} />
         </ContentContainer>
         <SideBarContainer>
           <Recommendation />

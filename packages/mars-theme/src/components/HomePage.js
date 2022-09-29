@@ -27,11 +27,11 @@ const MainContainer = styled.div`
   padding: 35px 120px 120px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 const ContentContainer = styled.div`
   width: 56.1%;
 `;
 const SideBarContainer = styled.div`
-  margin-left: 7%;
   width: 35%;
 `;

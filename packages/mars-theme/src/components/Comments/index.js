@@ -22,4 +22,3 @@ const Comments = ({ actions, state, postId }) => {
 };
 
 export default connect(Comments);
-

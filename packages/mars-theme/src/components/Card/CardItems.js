@@ -10,9 +10,13 @@ const CardItems = ({ state, item }) => {
   console.log({ author: author, date: date });
   //   console.log({ excerpt: item.excerpt.rendered });
   //   console.log(item.title.rendered);
+
   const reduceExcerpt = (excerpt) => {
-    if (excerpt.length > 50) {
-      excerpt = excerpt.substring(3, 88) + " ...";
+    excerpt = excerpt.replace("<p>", "");
+    excerpt = excerpt.replace("&hellip;</p>", "");
+    excerpt = excerpt.replace("</p>", "");
+    if (excerpt.length > 10) {
+      excerpt = excerpt.substring(0, 85) + " ...";
     }
     return excerpt;
   };

@@ -1,10 +1,10 @@
 import React from "react";
 import { connect, styled } from "frontity";
 import Image from "@frontity/components/image";
+import CommentTemplate from "./CommentTemplate";
 const CommentsList = ({ state, libraries, postId }) => {
   const data = state.source.get(`@comments/${postId}`);
   const Html2React = libraries.html2react.Component;
-  console.log(data);
   const dataFormatConverter = (date) => {
     date = date.toDateString();
     date = date.substring(4, 10) + "," + date.substring(11, 15);
@@ -14,34 +14,12 @@ const CommentsList = ({ state, libraries, postId }) => {
     <>
       <Container>
         <Title>Comments</Title>
-        {data.items.map(({ id }) => {
-          const author = state.source.comment[id];
-          const content = state.source.comment[id].content.rendered;
-          const date = new Date(state.source.comment[id].date);
+        {data.items.map(({ id, children }) => {
+            const Html2React = libraries.html2react.Component;
           return (
-            <div style={{borderBottom: "1px solid #CECECE",paddingBottom:"20px"}}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  marginTop: "24px",
-                }}
-              >
-                <PostAuthorAvatar
-                  src={author.author_avatar_urls[96]}
-                  alt="Avatar"
-                />
-                <div>
-                  <PostAuthorName>
-                    {author.author_name || "Anonymous"}
-                  </PostAuthorName>
-                  <PostDate>{dataFormatConverter(date)}</PostDate>
-                </div>
-              </div>
-              <CommentContent>
-                <Html2React html={content} />
-              </CommentContent>
-            </div>
+            <>
+              <CommentTemplate id={id} children={children} Html2React={Html2React}/>
+            </>
           );
         })}
       </Container>
@@ -87,7 +65,7 @@ const CommentContent = styled.div`
   font-size: 18px;
   line-height: 23px;
   color: #000000;
-  
+  word-break: break-word;
   p {
     margin: 0;
   }

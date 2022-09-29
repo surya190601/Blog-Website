@@ -2,10 +2,17 @@ import React from "react";
 import { connect, styled } from "frontity";
 import Image from "@frontity/components/image";
 const CommentTemplate = (props) => {
-  const { id, children } = props;
+  const { id, children, state, libraries,Html2React } = props;
   const author = state.source.comment[id];
+  //   console.log(author);
   const content = state.source.comment[id].content.rendered;
   const date = new Date(state.source.comment[id].date);
+  
+  const dataFormatConverter = (date) => {
+    date = date.toDateString();
+    date = date.substring(4, 10) + "," + date.substring(11, 15);
+    return date;
+  };
   return (
     <>
       <div style={{ borderBottom: "1px solid #CECECE", paddingBottom: "20px" }}>
@@ -26,11 +33,16 @@ const CommentTemplate = (props) => {
           <Html2React html={content} />
         </CommentContent>
         {children &&
-          children.map(({ id, child }) => {
+          children.map(({ id, children }) => {
             return (
               <>
                 <ChildCommentContainer>
-                  <CommentTemplate id={id} children={child} />
+                  <CommentTemplate
+                    id={id}
+                    children={children}
+                    state={state}
+                    Html2React={Html2React}
+                  />
                 </ChildCommentContainer>
               </>
             );
@@ -74,5 +86,5 @@ const CommentContent = styled.div`
 const ChildCommentContainer = styled.div`
   margin-left: 20px;
   border-left: 1px solid #bdbdbd;
-  paddingleft: 20px;
+  padding-left: 20px;
 `;

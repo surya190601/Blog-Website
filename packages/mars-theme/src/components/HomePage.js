@@ -2,7 +2,7 @@ import React from "react";
 import Banner from "./Banner";
 import { connect, styled } from "frontity";
 import Card from "./Card/Card";
-import Recommendation from "./Recommendation/Recommendation";
+import Recommendation from "./Recommendation";
 
 const HomePage = ({ state }) => {
   return (
@@ -13,9 +13,8 @@ const HomePage = ({ state }) => {
           <Card />
         </ContentContainer>
         <SideBarContainer>
-          <div>
-            <Recommendation />
-          </div>
+          
+          <Recommendation />
         </SideBarContainer>
       </MainContainer>
     </>

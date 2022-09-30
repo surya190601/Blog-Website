@@ -125,4 +125,7 @@ const ReplyText = styled.div`
   font-size: 14px;
   line-height: 18px;
   color: #757575;
+  :hover {
+    cursor: pointer;
+  }
 `;

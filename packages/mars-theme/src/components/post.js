@@ -3,9 +3,11 @@ import Link from "./link";
 import FeaturedMedia from "./featured-media";
 import { ChevronSmallLeft } from "@styled-icons/entypo";
 import { Share } from "@styled-icons/entypo";
-import Recommendation from "./Recommendation/Recommendation";
+import Recommendation from "./Recommendation";
 import Image from "@frontity/components/image";
 import Comments from "./Comments";
+import AuthorDetail from "./AuthorDetail";
+import MoreFromAuthor from "./MoreFromAuthor";
 
 /**
  * The Post component that Mars uses to render any kind of "post type", like
@@ -87,6 +89,8 @@ const Post = ({ state, actions, libraries }) => {
           <Comments postId={post.id} />
         </ContentContainer>
         <SideBarContainer>
+          <AuthorDetail />
+          <MoreFromAuthor />
           <Recommendation />
         </SideBarContainer>
       </div>
@@ -116,11 +120,11 @@ const StyledBackHomeText = styled.div`
 `;
 const ContentContainer = styled.div`
   padding-left: 10px;
-  width: 714px;
+  width: 57.58%;
 `;
 const SideBarContainer = styled.div`
   margin-left: 80px;
-  width: 28%;
+  width: 35%;
 `;
 const PostAuthorName = styled.div`
   margin-top: 21px;
@@ -167,7 +171,7 @@ const PostDescription = styled.div`
   color: #b0b0b0;
 `;
 const ImageContainer = styled.div`
-  width: 714px;
+  width: 100%;
   height: 402px;
 `;
 /**

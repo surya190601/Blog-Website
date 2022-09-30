@@ -1,9 +1,10 @@
 import React from "react";
 import { connect, styled } from "frontity";
-import FeaturedMedia from "../featured-media";
-import Link from "../link";
+import FeaturedMedia from "./featured-media";
+import Link from "./link";
 import Image from "@frontity/components/image";
-const RecommendationItems = ({ state, item }) => {
+const HorizontalCardItems = ({ state, item }) => {
+  console.log(item);
   const author = state.source.author[item.author];
   const date = new Date(item.date);
   const dataFormatConverter = (date) => {
@@ -50,7 +51,7 @@ const RecommendationItems = ({ state, item }) => {
   );
 };
 
-export default connect(RecommendationItems);
+export default connect(HorizontalCardItems);
 const PostTitle = styled.div`
   font-weight: 500;
   font-size: 16px;

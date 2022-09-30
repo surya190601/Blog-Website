@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, styled } from "frontity";
-import RecommendationItems from "./RecommendationItems";
+import HorizontalCardItems from "./HorizontalCardItems";
 const Recommendation = ({ state }) => {
   console.log(state.router.link);
   const item = state.source.get("/").items;
@@ -12,7 +12,7 @@ const Recommendation = ({ state }) => {
         {item?.slice(0, 5)?.map(({ type, id }) => {
           const item = state.source[type][id];
           // Render one Item component for each one.
-          return <RecommendationItems key={item.id} item={item} />;
+          return <HorizontalCardItems key={item.id} item={item} />;
         })}
       </Container>
     </>

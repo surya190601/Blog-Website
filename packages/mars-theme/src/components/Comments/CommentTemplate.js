@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect, styled } from "frontity";
 import Image from "@frontity/components/image";
+import CommentsList from "./comments-list";
+import CommentsForm from "./comments-form";
 const CommentTemplate = (props) => {
-  const { id, children, state, libraries, Html2React ,line = true} = props;
+  const {
+    id,
+    children,
+    state,
+    libraries,
+    Html2React,
+    line = true,
+    postId,
+  } = props;
   const author = state.source.comment[id];
   //   console.log(author);
   const content = state.source.comment[id].content.rendered;
   const date = new Date(state.source.comment[id].date);
-
   const dataFormatConverter = (date) => {
     date = date.toDateString();
     date = date.substring(4, 10) + "," + date.substring(11, 15);
     return date;
   };
+  const [isShown, setIsShown] = useState(false);
   return (
     <>
-      <div style={{}}>
+      <div>
         <div
           style={{
             display: "flex",
@@ -31,7 +41,25 @@ const CommentTemplate = (props) => {
         </div>
         <CommentContent>
           <Html2React html={content} />
+          <ReplyText
+            onClick={(line) => {
+              console.log(id);
+              setIsShown(true);
+              line = false;
+            }}
+          >
+            Reply
+          </ReplyText>
+          {isShown && (
+            <CommentsForm
+              setIsShown={setIsShown}
+              line={false}
+              Id={id}
+              postId={postId}
+            />
+          )}
         </CommentContent>
+
         {children &&
           children.map(({ id, children }) => {
             return (
@@ -42,14 +70,15 @@ const CommentTemplate = (props) => {
                     children={children}
                     state={state}
                     Html2React={Html2React}
-                    line = {false}
+                    line={false}
+                    postId={postId}
                   />
                 </ChildCommentContainer>
               </>
             );
           })}
       </div>
-      {line && <hr />}
+      {line && <hr style={{ marginTop: "20px" }} />}
     </>
   );
 };
@@ -89,4 +118,11 @@ const ChildCommentContainer = styled.div`
   margin-left: 20px;
   border-left: 1px solid #bdbdbd;
   padding-left: 20px;
+`;
+const ReplyText = styled.div`
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #757575;
 `;

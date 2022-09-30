@@ -3,13 +3,9 @@ import { connect, styled } from "frontity";
 import Image from "@frontity/components/image";
 import CommentTemplate from "./CommentTemplate";
 const CommentsList = ({ state, libraries, postId }) => {
+  
   const data = state.source.get(`@comments/${postId}`);
-  const Html2React = libraries.html2react.Component;
-  const dataFormatConverter = (date) => {
-    date = date.toDateString();
-    date = date.substring(4, 10) + "," + date.substring(11, 15);
-    return date;
-  };
+  console.log(data.items);
   return (
     <>
       <Container>
@@ -18,7 +14,7 @@ const CommentsList = ({ state, libraries, postId }) => {
             const Html2React = libraries.html2react.Component;
           return (
             <>
-              <CommentTemplate id={id} children={children} Html2React={Html2React}/>
+              <CommentTemplate id={id} children={children} Html2React={Html2React} postId={postId}/>
             </>
           );
         })}

@@ -2,27 +2,32 @@ import React, { useState } from "react";
 import { connect, styled } from "frontity";
 import Loading from "../loading";
 
-const CommentsForm = ({ actions, state, postId }) => {
+const CommentsForm = ({
+  actions,
+  state,
+  postId,
+  setIsShown,
+  line = true,
+  Id = 0,
+}) => {
   const [commentText, setCommentText] = useState("");
+  const [parentId, setParentId] = useState(Id);
   const form = state.comments.forms[postId];
-  const UpdatingInput = (e) => {
+  const UpdatingInput = (e, parentId) => {
     e.preventDefault();
+    console.log(commentText);
     actions.comments.updateFields(postId, {
       content: commentText,
-      authorEmail: "",
-      authorName: "",
+      parent: parentId,
     });
     actions.comments.submit(postId);
   };
   return (
     <>
       <form
-        onSubmit={(e) => {
-          UpdatingInput(e);
-        }}
         style={{
           marginTop: "25px",
-          borderBottom: "1px solid #CECECE",
+          // borderBottom: "1px solid #CECECE",
           paddingBottom: "20px",
         }}
       >
@@ -48,13 +53,22 @@ const CommentsForm = ({ actions, state, postId }) => {
           <StyledCancelButton
             onClick={() => {
               setCommentText("");
+              setIsShown(false);
             }}
           >
             Cancel
           </StyledCancelButton>
-          <StyledCommentButton type="submit" value="Comment" />
+          <StyledCommentButton
+            onClick={(e) => {
+              UpdatingInput(e, parentId);
+            }}
+          >
+            Comment
+          </StyledCommentButton>
         </div>
+        {console.log(form?.errors.parent)}
       </form>
+      {line && <hr />}
     </>
   );
 };
@@ -76,7 +90,7 @@ const StyledInput = styled.textarea`
     color: #a4a4a4;
   }
 `;
-const StyledCommentButton = styled.input`
+const StyledCommentButton = styled.div`
   margin-left: 22px;
   background: #000000;
   border: 1px solid #000000;

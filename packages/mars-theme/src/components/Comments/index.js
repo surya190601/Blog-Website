@@ -3,7 +3,7 @@ import { connect } from "frontity";
 import CommentsList from "./comments-list";
 import CommentsForm from "./comments-form";
 
-const Comments = ({ actions, state, postId }) => {
+const Comments = ({ actions, state, postId,children ,setIsShown, line,Id,}) => {
   const data = state.source.get(`@comments/${postId}`);
   useEffect(() => {
     actions.source.fetch(`@comments/${postId}`);
@@ -11,12 +11,14 @@ const Comments = ({ actions, state, postId }) => {
   // console.log(postId);
 
   return (
-    data.isReady && (
+    <>
+    {data.isReady && (
       <>
         <CommentsList postId={postId} />
         <CommentsForm postId={postId} />
       </>
-    )
+    )}
+    </>
   );
 };
 

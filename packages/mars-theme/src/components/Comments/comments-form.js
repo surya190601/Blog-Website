@@ -15,7 +15,6 @@ const CommentsForm = ({
   const form = state.comments.forms[postId];
   const UpdatingInput = (e, parentId) => {
     e.preventDefault();
-    console.log(commentText);
     actions.comments.updateFields(postId, {
       content: commentText,
       parent: parentId,
@@ -66,7 +65,6 @@ const CommentsForm = ({
             Comment
           </StyledCommentButton>
         </div>
-        {console.log(form?.errors.parent)}
       </form>
       {line && <hr />}
     </>

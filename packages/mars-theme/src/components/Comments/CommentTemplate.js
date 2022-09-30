@@ -54,7 +54,7 @@ const CommentTemplate = (props) => {
             <CommentsForm
               setIsShown={setIsShown}
               line={false}
-              Id={id}
+              parentId={id}
               postId={postId}
             />
           )}

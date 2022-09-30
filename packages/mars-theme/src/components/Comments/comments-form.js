@@ -8,10 +8,9 @@ const CommentsForm = ({
   postId,
   setIsShown,
   line = true,
-  Id = 0,
+  parentId = 0,
 }) => {
   const [commentText, setCommentText] = useState("");
-  const [parentId, setParentId] = useState(Id);
   const form = state.comments.forms[postId];
   const UpdatingInput = (e, parentId) => {
     e.preventDefault();

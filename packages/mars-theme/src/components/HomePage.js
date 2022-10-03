@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import { connect, styled } from "frontity";
 import Card from "./Card/Card";
 import Recommendation from "./Recommendation";
+import SearchComponent from "./SearchComponent";
 
 const HomePage = ({ state }) => {
   return (
@@ -13,6 +14,7 @@ const HomePage = ({ state }) => {
           <Card />
         </ContentContainer>
         <SideBarContainer>
+          <SearchComponent />
           <Recommendation />
         </SideBarContainer>
       </MainContainer>

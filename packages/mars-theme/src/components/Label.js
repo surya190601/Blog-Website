@@ -5,7 +5,6 @@ const Label = (props) => {
   const { link, name, index, labelPress, setLabelPress, state } = props;
   console.log({ state: state.router.link });
   useEffect(() => {
-    //Runs only on the first render
     let tempArr = new Array(labelPress.length).fill(false);
     if (state.router.link === link) {
       tempArr[index] = true;

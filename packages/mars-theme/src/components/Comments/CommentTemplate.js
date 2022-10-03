@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect, styled } from "frontity";
+import { connect, styled, decode } from "frontity";
 import Image from "@frontity/components/image";
 import CommentsList from "./comments-list";
 import CommentsForm from "./comments-form";
@@ -16,6 +16,7 @@ const CommentTemplate = (props) => {
   const author = state.source.comment[id];
   //   console.log(author);
   const content = state.source.comment[id].content.rendered;
+  console.log(decode(content));
   const date = new Date(state.source.comment[id].date);
   const dataFormatConverter = (date) => {
     date = date.toDateString();
@@ -23,6 +24,9 @@ const CommentTemplate = (props) => {
     return date;
   };
   const [isShown, setIsShown] = useState(false);
+  const CapitalizedComment = (commentText) => {
+    return commentText.charAt(3).toUpperCase() + commentText.slice(4);
+  };
   return (
     <>
       <div>
@@ -40,7 +44,7 @@ const CommentTemplate = (props) => {
           </div>
         </div>
         <CommentContent>
-          <Html2React html={content} />
+          <Html2React html={CapitalizedComment(content)} />
           <ReplyText
             onClick={(line) => {
               console.log(id);
@@ -93,14 +97,14 @@ const PostAuthorName = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 21px;
-  color: #000000;
+  color: #858585;
   margin-left: 11px;
 `;
 const PostDate = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  color: #000000;
+  color: #858585;
   margin-left: 11px;
 `;
 const CommentContent = styled.div`
@@ -115,6 +119,7 @@ const CommentContent = styled.div`
   }
 `;
 const ChildCommentContainer = styled.div`
+  border-left: 1px solid #f1f1f1;
   margin-left: 20px;
   padding-left: 20px;
 `;

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { connect, styled } from "frontity";
 import Label from "./Label";
+import SearchBar from "./SearchBar";
 const SearchComponent = ({ state }) => {
-  //   console.log(state.source.category);
   const category = Object.keys(state.source.category).map(
     (key) => state.source.category[key]
   );
+  const author = Object.keys(state.source.author).map(
+    (key) => state.source.author[key]
+  );
+  console.log(author);
   let index = 0;
   const [labelPress, setLabelPress] = useState(
     new Array(category.length).fill(false)
@@ -14,6 +18,9 @@ const SearchComponent = ({ state }) => {
     <>
       <div>
         <StyledTitle>Discover more</StyledTitle>
+      </div>
+      <div style={{ position: "relative" }}>
+        <SearchBar category={category} author={author} />
       </div>
       <div
         style={{

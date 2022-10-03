@@ -161,6 +161,7 @@ const Title = styled.h1`
   line-height: 55px;
   color: #000000;
   margin: 18px 0px 12px;
+  width: 99.5%;
 `;
 const PostDescription = styled.div`
   font-weight: 400;

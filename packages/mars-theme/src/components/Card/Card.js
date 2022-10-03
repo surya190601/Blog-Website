@@ -4,15 +4,12 @@ import CardItems from "./CardItems";
 const Card = ({ state }) => {
   const data = state.source.get(state.router.link);
   const item = state.source.get(state.router.link).items;
-  const taxonomyCapitalized = (taxonomy) => {
-    return taxonomy.charAt(0).toUpperCase() + taxonomy.slice(1);
-  };
+  
   return (
     <>
       {/* If the list is a taxonomy, we render a title. */}
       {data.isTaxonomy && (
         <Header>
-          {taxonomyCapitalized(data.taxonomy)}:{" "}
           <b>{decode(state.source[data.taxonomy][data.id].name)}</b>
         </Header>
       )}
@@ -20,7 +17,7 @@ const Card = ({ state }) => {
       {/* If the list is for a specific author, we render a title. */}
       {data.isAuthor && (
         <Header>
-          Author: <b>{decode(state.source.author[data.id].name)}</b>
+          <b>{decode(state.source.author[data.id].name)}</b>
         </Header>
       )}
       {!data.isAuthor && !data.isTaxonomy && (

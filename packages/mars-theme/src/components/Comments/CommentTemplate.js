@@ -116,7 +116,6 @@ const CommentContent = styled.div`
 `;
 const ChildCommentContainer = styled.div`
   margin-left: 20px;
-  border-left: 1px solid #bdbdbd;
   padding-left: 20px;
 `;
 const ReplyText = styled.div`

@@ -188,7 +188,7 @@ const Content = styled.div`
 
   p {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 23px;
     color: #000000;
   }

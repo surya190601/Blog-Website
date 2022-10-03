@@ -27,40 +27,45 @@ const CardItems = ({ state, item }) => {
   };
   return (
     <>
-      <div style={{ width: "320px", height: "366px" }}>
-        <Link link={item.link}>
+      <Link link={item.link}>
+        <MainContainer>
           <ImageContainer>
             <FeaturedMedia id={item.featured_media} />
             <Frame />
           </ImageContainer>
-        </Link>
-        <PostDetailsContainer>
-          <PostTitle>{item.title.rendered}</PostTitle>
-          <PostExcerpt>{reduceExcerpt(item.excerpt.rendered)}</PostExcerpt>
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <PostAuthorAvatar src={author.avatar_urls[96]} alt="Avatar" />
-            <PostAuthorName>{author.name}</PostAuthorName>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginTop: "7px",
-              justifyContent: "space-between",
-            }}
-          >
-            <PostDate>{dataFormatConverter(date)}</PostDate>
-            <div>
-              <StyledShareIcon />
+          <PostDetailsContainer>
+            <PostTitle>{item.title.rendered}</PostTitle>
+            <PostExcerpt>{reduceExcerpt(item.excerpt.rendered)}</PostExcerpt>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <PostAuthorAvatar src={author.avatar_urls[96]} alt="Avatar" />
+              <PostAuthorName>{author.name}</PostAuthorName>
             </div>
-          </div>
-        </PostDetailsContainer>
-      </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: "7px",
+                justifyContent: "space-between",
+              }}
+            >
+              <PostDate>{dataFormatConverter(date)}</PostDate>
+              <div>
+                <StyledShareIcon />
+              </div>
+            </div>
+          </PostDetailsContainer>
+        </MainContainer>
+      </Link>
     </>
   );
 };
 
 export default connect(CardItems);
+
+const MainContainer = styled.div`
+  width: 320px;
+  height: 366px;
+`;
 
 const ImageContainer = styled.div`
   position: relative;
@@ -75,7 +80,7 @@ const Frame = styled.div`
   opacity: 0;
   transition: 0.3s ease;
   background: #e72b2c;
-  ${ImageContainer}:hover & {
+  ${MainContainer}:hover & {
     opacity: 1;
   }
 `;

@@ -13,7 +13,6 @@ const HomePage = ({ state }) => {
           <Card />
         </ContentContainer>
         <SideBarContainer>
-          
           <Recommendation />
         </SideBarContainer>
       </MainContainer>
@@ -32,5 +31,6 @@ const ContentContainer = styled.div`
   width: 56.1%;
 `;
 const SideBarContainer = styled.div`
+  padding-top: 15px;
   width: 35%;
 `;

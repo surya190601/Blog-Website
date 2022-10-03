@@ -21,16 +21,6 @@ const Label = (props) => {
       <Link link={link}>
         <StyledLabelButton
           active={labelPress[index]}
-          onClick={() => {
-            // let tempArr = new Array(labelPress.length).fill(false);
-            // if (state.router.link === link) {
-            //   tempArr[index] = true;
-            //   setLabelPress(tempArr);
-            //   return;
-            // }
-            // tempArr[index] = !labelPress[index];
-            // setLabelPress(tempArr);
-          }}
         >
           {name}
         </StyledLabelButton>

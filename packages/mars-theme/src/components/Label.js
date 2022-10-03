@@ -10,20 +10,15 @@ const Label = (props) => {
     if (state.router.link === link) {
       tempArr[index] = true;
       setLabelPress(tempArr);
-    }else if (state.router.link === '/'){
+    } else if (state.router.link === "/") {
       let tempArr = new Array(labelPress.length).fill(false);
       setLabelPress(tempArr);
     }
-    
   }, [state.router.link]);
   return (
     <>
       <Link link={link}>
-        <StyledLabelButton
-          active={labelPress[index]}
-        >
-          {name}
-        </StyledLabelButton>
+        <StyledLabelButton active={labelPress[index]}>{name}</StyledLabelButton>
       </Link>
     </>
   );
